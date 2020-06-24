@@ -6,9 +6,9 @@ const bodyParser = require('body-parser');
 
 const {PORT, DATABASE_URL} = require('./config')
 
-//const { errors } = require('celebrate');
+const { errors } = require('celebrate');
 
-//const routes = require('./routes');
+const routes = require('./routes');
 
 const nextError = require('./middlewares/nextError');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -27,10 +27,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
 
-//app.use(routes);
+app.use(routes);
 
 app.use(errorLogger);
-//app.use(errors());
+app.use(errors());
 app.use(nextError);
 
 app.listen({ host: 'localhost', port: PORT });

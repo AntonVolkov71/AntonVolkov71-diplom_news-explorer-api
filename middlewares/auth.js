@@ -1,13 +1,11 @@
 const jwt = require('jsonwebtoken');
 
+const { JWT_SECRET } = require('../config')
+
 const UnathorizedError = require('../errors/unathorizedError');
 
 const auth = (req, res, next) => {
   const errorAuth = () => { throw new UnathorizedError('Необходима авторизация'); };
-
-  const myKey = process.env.NODE_ENV === 'production'
-    ? process.env.JWT_SECRET
-    : 'super-strong-secret';
 
   const { authorization } = req.headers;
   if (!authorization || !authorization.startsWith('Bearer ')) errorAuth();
@@ -17,7 +15,7 @@ const auth = (req, res, next) => {
   let payload;
 
   try {
-    payload = jwt.verify(token, myKey);
+    payload = jwt.verify(token, JWT_SECRET);
   } catch (err) {
     errorAuth();
   }
