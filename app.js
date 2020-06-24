@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const {PORT, DATABASE_URL} = require('config')
+const {PORT, DATABASE_URL} = require('./config')
 
 //const { errors } = require('celebrate');
 
@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
 
-app.use(routes);
+//app.use(routes);
 
 app.use(errorLogger);
 //app.use(errors());
