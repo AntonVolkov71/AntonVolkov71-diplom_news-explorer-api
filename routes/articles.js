@@ -1,10 +1,10 @@
 const router = require('express').Router();
 
-const { postArticle, getArticle, delArticle } = require('../controllers/articles');
-// const { postCardCelebrate, idCelebrate } = require('../celebrates/celebrates');
+const { postArticle, getArticles, delArticle } = require('../controllers/articles');
+const { postArticleCelebrate, idCelebrate } = require('../celebrates/celebrates');
 
-router.get('/', getArticle);
-router.post('/', postArticle); // postCardCelebrate, postCard);
-router.delete('/:_articleId', delArticle);// idCelebrate, deleteCard);
+router.post('/', postArticleCelebrate, postArticle); // postCardCelebrate, postCard);
+router.get('/', getArticles);
+router.delete('/:_articleId', idCelebrate, delArticle);// idCelebrate, deleteCard);
 
 module.exports = router;

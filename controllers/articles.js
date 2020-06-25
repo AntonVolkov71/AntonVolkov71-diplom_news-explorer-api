@@ -28,7 +28,7 @@ const postArticle = (req, res, next) => {
     });
 };
 
-const getArticle = (req, res, next) => {
+const getArticles = (req, res, next) => {
   const { _id } = req.user;
 
   return Article.find({ owner: _id })
@@ -50,4 +50,4 @@ const delArticle = (req, res, next) => {
     .catch(next);
 };
 
-module.exports = { postArticle, getArticle, delArticle };
+module.exports = { postArticle, getArticles, delArticle };
