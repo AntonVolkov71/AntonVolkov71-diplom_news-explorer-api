@@ -5,9 +5,9 @@ const { signUpCelebrate, signInCelebrate } = require('../celebrates/celebrates')
 
 const {
   postUser, login,
-} = require('../controllers/user');
+} = require('../controllers/users');
 
-const user = require('./user');
+const users = require('./users');
 // const cards = require('./cards');
 const notFound = require('./notFound');
 
@@ -16,9 +16,9 @@ router.post('/signup', signUpCelebrate, postUser)//signUpCelebrate, postUser);
 
 router.use(auth);
 
-router.use('/user', user);
+router.use('/users', users);
 //router.use('/article', cards);
 
-//router.all('*', notFound);
+router.all('*', notFound);
 
 module.exports = router;

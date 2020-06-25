@@ -5,21 +5,14 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user.js');
 const { JWT_SECRET } = require('../config')
 
-const NotFoundError = require('../errors/notFoundError');
 const BadRequestError = require('../errors/badRequestError');
 
 const getUser = (req, res, next) => {
-  const validId = mongoose.Types.ObjectId.isValid(req.params._id);
 
-  if (validId) {
-    return User.findById(req.params._id)
-      .then((user) => (user ? res.send({ data: user }) : Promise.reject(new NotFoundError('Пользователь не найден'))))
-      .catch(next);
-  }
-
-  const error = new BadRequestError('Невалидный id');
-
-  return next(error);
+  const { _id } = req.user;
+  return User.findById(_id)
+    .then((user) => res.send({ data: user }))
+    .catch(next);
 };
 
 const postUser = (req, res, next) => {
