@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const { JWT_SECRET } = require('../config')
+const { JWT_SECRET } = require('../config');
 
 const UnathorizedError = require('../errors/unathorizedError');
 
@@ -9,7 +9,6 @@ const auth = (req, res, next) => {
 
   const { authorization } = req.headers;
   if (!authorization || !authorization.startsWith('Bearer ')) errorAuth();
-
 
   const token = authorization.replace('Bearer ', '');
   let payload;

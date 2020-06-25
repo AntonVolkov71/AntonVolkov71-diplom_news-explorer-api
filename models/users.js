@@ -37,7 +37,6 @@ userSchema.methods.omitPrivate = function omitPrivate() {
 };
 
 userSchema.statics.existingUser = function (email) {
-  console.log('object')
   return this.findOne({ email })
     .then((user) => {
       if (user) {
@@ -63,6 +62,5 @@ userSchema.statics.findUserByCredentials = function (email, password) {
         });
     });
 };
-
 
 module.exports = mongoose.model('user', userSchema);

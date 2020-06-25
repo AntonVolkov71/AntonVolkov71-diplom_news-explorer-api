@@ -11,4 +11,3 @@ const JWT_SECRET = process.env.NODE_ENV === 'production'
   : 'super-strong-secret';
 
 module.exports = { PORT, DATABASE_URL, JWT_SECRET };
-

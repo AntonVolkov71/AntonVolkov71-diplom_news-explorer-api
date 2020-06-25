@@ -4,9 +4,8 @@ const mongoose = require('mongoose');
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const {PORT, DATABASE_URL} = require('./config')
-
 const { errors } = require('celebrate');
+const { PORT, DATABASE_URL } = require('./config');
 
 const routes = require('./routes');
 

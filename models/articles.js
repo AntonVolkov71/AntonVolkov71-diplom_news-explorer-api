@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-const cardSchema = new mongoose.Schema({
+const validURL = new RegExp(/^https?:\/{2}/);
+
+const articleSchema = new mongoose.Schema({
   keyword: {
     type: String,
     required: true,
@@ -8,26 +10,26 @@ const cardSchema = new mongoose.Schema({
   },
   title: {
     type: String,
-    required: true
+    required: true,
   },
   text: {
     type: String,
-    required: true
+    required: true,
   },
   date: {
     type: String,
-    required: true
+    required: true,
   },
   source: {
     type: String,
-    required: true
+    required: true,
   },
   link: {
     type: String,
     required: true,
     validate: {
       validator(v) {
-        return /^https?:\/{2}/.test(v);
+        return validURL.test(v);
       },
     },
   },
@@ -36,7 +38,7 @@ const cardSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(v) {
-        return /^https?:\/{2}/.test(v);
+        return validURL.test(v);
       },
     },
   },
@@ -49,11 +51,10 @@ const cardSchema = new mongoose.Schema({
   },
 });
 
-
 articleSchema.methods.omitPrivate = function omitPrivate() {
-const obj = this.toObject();
-delete obj.owner;
-return obj;
+  const obj = this.toObject();
+  delete obj.owner;
+  return obj;
 };
 
 module.exports = mongoose.model('article', articleSchema);

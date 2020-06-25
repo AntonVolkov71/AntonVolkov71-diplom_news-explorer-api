@@ -2,13 +2,12 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const User = require('../models/user.js');
-const { JWT_SECRET } = require('../config')
+const User = require('../models/users.js');
+const { JWT_SECRET } = require('../config');
 
 const BadRequestError = require('../errors/badRequestError');
 
 const getUser = (req, res, next) => {
-
   const { _id } = req.user;
   return User.findById(_id)
     .then((user) => res.send({ data: user }))
@@ -38,7 +37,6 @@ const postUser = (req, res, next) => {
 };
 
 const login = (req, res, next) => {
-
   const { email, password } = req.body;
 
   return User.findUserByCredentials(email, password)
@@ -55,5 +53,5 @@ const login = (req, res, next) => {
 };
 
 module.exports = {
-  getUser, postUser, login
+  getUser, postUser, login,
 };
