@@ -43,10 +43,10 @@ const delArticle = (req, res, next) => {
 
   const { _articleId } = req.params;
 
-  return Article.findById({ owner: _id, _id: _articleId })
-    .then((article) => (article
-      ? Article.deleteOne(article).then(res.send({ data: article }))
-      : Promise.reject(new NotFoundError('Новостей с данным _id не существует'))))
+  return Article.find({ owner: _id, _id: _articleId })
+    .then((article) => (article[0]
+      ? Article.deleteOne(article[0]).then(res.send({ data: article[0] }))
+      : Promise.reject(new NotFoundError('У вас нет новостей с таким id'))))
     .catch(next);
 };
 
