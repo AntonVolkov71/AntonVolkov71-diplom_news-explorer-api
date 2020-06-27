@@ -11,8 +11,8 @@ const users = require('./users');
 const articles = require('./articles');
 const notFound = require('./notFound');
 
-router.post('/signin', signInCelebrate, login); // signInCelebrate, login);
-router.post('/signup', signUpCelebrate, postUser);// signUpCelebrate, postUser);
+router.post('/signin', signInCelebrate, login);
+router.post('/signup', signUpCelebrate, postUser);
 
 router.use(auth);
 

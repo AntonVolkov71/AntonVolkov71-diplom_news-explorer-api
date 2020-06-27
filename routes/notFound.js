@@ -1,9 +1,9 @@
 const NotFoundError = require('../errors/notFoundError');
 
-const error = 'Запрашиваемый ресурс не найден';
+const notUrlError = require('../errors/textErrors/notUrlError');
 
 const notFound = () => {
-  throw new NotFoundError(error);
+  throw new NotFoundError(notUrlError);
 };
 
 module.exports = notFound;
